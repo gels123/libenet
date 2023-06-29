@@ -15,6 +15,7 @@
 #include <errno.h>
 #include <time.h>
 
+#define _POSIX_C_SOURCE 200112L
 #define ENET_BUILDING_LIB 1
 #include "enet/enet.h"
 
@@ -117,7 +118,7 @@ int
 enet_address_set_host (ENetAddress * address, const char * name)
 {
 #ifdef HAS_GETADDRINFO
-    struct addrinfo hints, * resultList = NULL, * result = NULL;
+    struct addrinfo hints, *resultList = NULL, *result = NULL;
 
     memset (& hints, 0, sizeof (hints));
     hints.ai_family = AF_INET;
@@ -264,9 +265,7 @@ enet_socket_bind (ENetSocket socket, const ENetAddress * address)
        sin.sin_addr.s_addr = INADDR_ANY;
     }
 
-    return bind (socket,
-                 (struct sockaddr *) & sin,
-                 sizeof (struct sockaddr_in)); 
+    return bind (socket,(struct sockaddr *) & sin,sizeof (struct sockaddr_in));
 }
 
 int

@@ -70,8 +70,7 @@ enet_host_create (const ENetAddress * address, size_t peerCount, size_t channelL
 
     if (! channelLimit || channelLimit > ENET_PROTOCOL_MAXIMUM_CHANNEL_COUNT)
       channelLimit = ENET_PROTOCOL_MAXIMUM_CHANNEL_COUNT;
-    else
-    if (channelLimit < ENET_PROTOCOL_MINIMUM_CHANNEL_COUNT)
+    else if (channelLimit < ENET_PROTOCOL_MINIMUM_CHANNEL_COUNT)
       channelLimit = ENET_PROTOCOL_MINIMUM_CHANNEL_COUNT;
 
     host -> randomSeed = (enet_uint32) (size_t) host;
@@ -113,9 +112,7 @@ enet_host_create (const ENetAddress * address, size_t peerCount, size_t channelL
 
     enet_list_clear (& host -> dispatchQueue);
 
-    for (currentPeer = host -> peers;
-         currentPeer < & host -> peers [host -> peerCount];
-         ++ currentPeer)
+    for (currentPeer = host -> peers; currentPeer < & host -> peers [host -> peerCount]; ++ currentPeer)
     {
        currentPeer -> host = host;
        currentPeer -> incomingPeerID = currentPeer - host -> peers;
