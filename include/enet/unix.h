@@ -13,10 +13,6 @@
 #include <netinet/in.h>
 #include <unistd.h>
 
-#if defined(EPOLL)
-#define EPOLLFDSIZE 65535
-#endif
-
 #ifdef MSG_MAXIOVLEN
 #define ENET_BUFFER_MAXIMUM MSG_MAXIOVLEN
 #endif

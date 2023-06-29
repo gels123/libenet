@@ -14,6 +14,7 @@ check_function_exists("gethostbyname_r" HAS_GETHOSTBYNAME_R)
 check_function_exists("gethostbyaddr_r" HAS_GETHOSTBYADDR_R)
 check_function_exists("inet_pton" HAS_INET_PTON)
 check_function_exists("inet_ntop" HAS_INET_NTOP)
+check_function_exists("epoll_create" HAS_EPOLL)
 check_struct_has_member("struct msghdr" "msg_flags" "sys/types.h;sys/socket.h" HAS_MSGHDR_FLAGS)
 set(CMAKE_EXTRA_INCLUDE_FILES "sys/types.h" "sys/socket.h")
 check_type_size("socklen_t" HAS_SOCKLEN_T BUILTIN_TYPES_ONLY)
@@ -54,6 +55,9 @@ endif()
 if(HAS_SOCKLEN_T)
     add_definitions(-DHAS_SOCKLEN_T=1)
 endif()
+if(HAS_EPOLL)
+    add_definitions(-DEPOLL=1)
+endif()
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
@@ -80,6 +84,7 @@ set(SOURCE_FILES
     peer.c
     protocol.c
     unix.c
+    unix_epoll.c
     win32.c)
 
 source_group(include FILES ${INCLUDE_FILES})
