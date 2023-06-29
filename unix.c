@@ -3,7 +3,7 @@
  @brief ENet Unix system specific functions
 */
 #ifndef _WIN32
-
+#define _POSIX_C_SOURCE 200112L
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/ioctl.h>
@@ -15,7 +15,6 @@
 #include <errno.h>
 #include <time.h>
 
-#define _POSIX_C_SOURCE 200112L
 #define ENET_BUILDING_LIB 1
 #include "enet/enet.h"
 

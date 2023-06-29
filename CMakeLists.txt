@@ -57,7 +57,7 @@ endif()
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
-set(CMAKE_C_FLAGS "-std=c99")
+set(CMAKE_C_FLAGS "-std=gnu99")
 set(INCLUDE_FILES_PREFIX include/enet)
 set(INCLUDE_FILES
     ${INCLUDE_FILES_PREFIX}/callbacks.h

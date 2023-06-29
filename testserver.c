@@ -7,7 +7,7 @@
 #include "enet/enet.h"
 
 int main() {
-    fprintf(stderr, "=========%d\n", 100);
+    fprintf(stderr, "=====start testserver====\n");
     if (enet_initialize () != 0)
     {
         fprintf (stderr, "An error occurred while initializing ENet.\n");

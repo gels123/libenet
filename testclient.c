@@ -9,7 +9,7 @@
 #include <memory.h>
 
 int main() {
-    fprintf(stderr, "=========%d\n", 100);
+    fprintf(stderr, "=====start testclient====\n");
     if (enet_initialize () != 0)
     {
         fprintf (stderr, "An error occurred while initializing ENet.\n");
@@ -36,7 +36,7 @@ int main() {
     ENetPeer *peer;
 
     /* Connect to some.server.net:1234. */
-    enet_address_set_host (& address, "169.254.22.149");
+    enet_address_set_host (& address, "127.0.0.1");
     address.port = 1234;
 
     /* Initiate the connection, allocating the two channels 0 and 1. */
