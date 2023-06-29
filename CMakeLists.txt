@@ -55,13 +55,11 @@ endif()
 if(HAS_SOCKLEN_T)
     add_definitions(-DHAS_SOCKLEN_T=1)
 endif()
-if(HAS_EPOLL)
-    add_definitions(-DEPOLL=1)
-endif()
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
 set(CMAKE_C_FLAGS "-std=gnu99")
+
 set(INCLUDE_FILES_PREFIX include/enet)
 set(INCLUDE_FILES
     ${INCLUDE_FILES_PREFIX}/callbacks.h
@@ -84,7 +82,6 @@ set(SOURCE_FILES
     peer.c
     protocol.c
     unix.c
-    unix_epoll.c
     win32.c)
 
 source_group(include FILES ${INCLUDE_FILES})

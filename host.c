@@ -43,7 +43,6 @@ enet_host_create (const ENetAddress * address, size_t peerCount, size_t channelL
     if (host -> peers == NULL)
     {
        enet_free (host);
-
        return NULL;
     }
     memset (host -> peers, 0, peerCount * sizeof (ENetPeer));
@@ -56,7 +55,6 @@ enet_host_create (const ENetAddress * address, size_t peerCount, size_t channelL
 
        enet_free (host -> peers);
        enet_free (host);
-
        return NULL;
     }
 

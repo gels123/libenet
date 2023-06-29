@@ -112,7 +112,6 @@ enet_protocol_dispatch_incoming_commands (ENetHost * host, ENetEvent * event)
            break;
        }
     }
-
     return 0;
 }
 
@@ -1307,7 +1306,6 @@ enet_protocol_send_acknowledgements (ENetHost * host, ENetPeer * peer)
            peer -> mtu - host -> packetSize < sizeof (ENetProtocolAcknowledge))
        {
           peer -> flags |= ENET_PEER_FLAG_CONTINUE_SENDING;
-
           break;
        }
 
@@ -1801,7 +1799,6 @@ enet_host_service (ENetHost * host, ENetEvent * event, enet_uint32 timeout)
 #ifdef ENET_DEBUG
             perror ("Error dispatching incoming packets");
 #endif
-
             return -1;
 
         default:
@@ -1877,7 +1874,6 @@ enet_host_service (ENetHost * host, ENetEvent * event, enet_uint32 timeout)
 #ifdef ENET_DEBUG
              perror ("Error dispatching incoming packets");
 #endif
-
              return -1;
 
           default:
