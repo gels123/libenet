@@ -1228,7 +1228,6 @@ static int
 enet_protocol_receive_incoming_commands (ENetHost * host, ENetEvent * event)
 {
     int packets;
-
     for (packets = 0; packets < 256; ++ packets)
     {
        int receivedLength;
@@ -1600,9 +1599,7 @@ enet_protocol_send_outgoing_commands (ENetHost * host, ENetEvent * event, int ch
     enet_list_clear (& sentUnreliableCommands);
 
     for (int sendPass = 0, continueSending = 0; sendPass <= continueSending; ++ sendPass)
-    for (ENetPeer * currentPeer = host -> peers;
-         currentPeer < & host -> peers [host -> peerCount];
-         ++ currentPeer)
+    for (ENetPeer * currentPeer = host -> peers; currentPeer < & host -> peers [host -> peerCount]; ++ currentPeer)
     {
         if (currentPeer -> state == ENET_PEER_STATE_DISCONNECTED ||
             currentPeer -> state == ENET_PEER_STATE_ZOMBIE ||
