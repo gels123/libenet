@@ -2,7 +2,7 @@
  @file  unix.c
  @brief ENet Unix system specific functions
 */
-#if !defined(_WIN32) && !defined(EPOLL)
+#if !defined(_WIN32)
 
 #define _POSIX_C_SOURCE 200112L
 #include <sys/types.h>
@@ -554,10 +554,8 @@ enet_socket_wait (ENetSocket socket, enet_uint32 * condition, enet_uint32 timeou
         if (errno == EINTR && * condition & ENET_SOCKET_WAIT_INTERRUPT)
         {
             * condition = ENET_SOCKET_WAIT_INTERRUPT;
-
             return 0;
         }
-
         return -1;
     }
 
@@ -597,10 +595,8 @@ enet_socket_wait (ENetSocket socket, enet_uint32 * condition, enet_uint32 timeou
         if (errno == EINTR && * condition & ENET_SOCKET_WAIT_INTERRUPT)
         {
             * condition = ENET_SOCKET_WAIT_INTERRUPT;
-
             return 0;
         }
-      
         return -1;
     }
 
@@ -620,4 +616,3 @@ enet_socket_wait (ENetSocket socket, enet_uint32 * condition, enet_uint32 timeou
 }
 
 #endif
-

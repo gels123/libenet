@@ -47,7 +47,6 @@ int main() {
         fprintf (stderr,"No available peers for initiating an ENet connection.\n");
         exit (EXIT_FAILURE);
     }
-
     /* Wait up to 5 seconds for the connection attempt to succeed. */
     if (enet_host_service (client, & event, 5000) > 0 && event.type == ENET_EVENT_TYPE_CONNECT)
     {
@@ -56,7 +55,6 @@ int main() {
         int end = 0;
         int i = 0;
         while(1) {
-
             char str2[24];
             memset(str2, 0, sizeof(str2));
             sprintf(str2, "foo%d", i);
@@ -117,7 +115,6 @@ int main() {
 
         puts ("Connection to some.server.net:1234 failed.");
     }
-
 
 
     enet_host_destroy(client);

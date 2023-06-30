@@ -75,7 +75,7 @@ int main() {
         if(end) {
             break;
         }
-        usleep(100000);
+//        usleep(100000);
     }
 
 
