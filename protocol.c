@@ -380,8 +380,7 @@ enet_protocol_handle_connect (ENetHost * host, ENetProtocolHeader * header, ENet
 
     if (mtu < ENET_PROTOCOL_MINIMUM_MTU)
       mtu = ENET_PROTOCOL_MINIMUM_MTU;
-    else
-    if (mtu > ENET_PROTOCOL_MAXIMUM_MTU)
+    else if (mtu > ENET_PROTOCOL_MAXIMUM_MTU)
       mtu = ENET_PROTOCOL_MAXIMUM_MTU;
 
     if (mtu < peer -> mtu)
@@ -390,8 +389,7 @@ enet_protocol_handle_connect (ENetHost * host, ENetProtocolHeader * header, ENet
     if (host -> outgoingBandwidth == 0 &&
         peer -> incomingBandwidth == 0)
       peer -> windowSize = ENET_PROTOCOL_MAXIMUM_WINDOW_SIZE;
-    else
-    if (host -> outgoingBandwidth == 0 ||
+    else if (host -> outgoingBandwidth == 0 ||
         peer -> incomingBandwidth == 0)
       peer -> windowSize = (ENET_MAX (host -> outgoingBandwidth, peer -> incomingBandwidth) /
                                     ENET_PEER_WINDOW_SIZE_SCALE) *
@@ -403,8 +401,7 @@ enet_protocol_handle_connect (ENetHost * host, ENetProtocolHeader * header, ENet
 
     if (peer -> windowSize < ENET_PROTOCOL_MINIMUM_WINDOW_SIZE)
       peer -> windowSize = ENET_PROTOCOL_MINIMUM_WINDOW_SIZE;
-    else
-    if (peer -> windowSize > ENET_PROTOCOL_MAXIMUM_WINDOW_SIZE)
+    else if (peer -> windowSize > ENET_PROTOCOL_MAXIMUM_WINDOW_SIZE)
       peer -> windowSize = ENET_PROTOCOL_MAXIMUM_WINDOW_SIZE;
 
     if (host -> incomingBandwidth == 0)
@@ -418,8 +415,7 @@ enet_protocol_handle_connect (ENetHost * host, ENetProtocolHeader * header, ENet
 
     if (windowSize < ENET_PROTOCOL_MINIMUM_WINDOW_SIZE)
       windowSize = ENET_PROTOCOL_MINIMUM_WINDOW_SIZE;
-    else
-    if (windowSize > ENET_PROTOCOL_MAXIMUM_WINDOW_SIZE)
+    else if (windowSize > ENET_PROTOCOL_MAXIMUM_WINDOW_SIZE)
       windowSize = ENET_PROTOCOL_MAXIMUM_WINDOW_SIZE;
 
     verifyCommand.header.command = ENET_PROTOCOL_COMMAND_VERIFY_CONNECT | ENET_PROTOCOL_COMMAND_FLAG_ACKNOWLEDGE;

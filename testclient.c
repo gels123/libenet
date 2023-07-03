@@ -55,27 +55,27 @@ int main() {
         int end = 0;
         int i = 0;
         while(1) {
-            char str2[24];
-            memset(str2, 0, sizeof(str2));
-            sprintf(str2, "foo%d", i);
-            fprintf(stdout, "client do while loop i=%d len_str2=%d\n", i, strlen(str2));
-            i++;
-            /* Create a reliable packet of size 7 containing "packet\0" */
-            char str[] = "packet_";
-            ENetPacket * packet = enet_packet_create (str,
-                                                      strlen (str) + 1,
-                                                      ENET_PACKET_FLAG_RELIABLE);
-            /* Extend the packet so and append the string "foo", so it now */
-            /* contains "packetfoo\0"                                      */
-            enet_packet_resize (packet, strlen (str) + strlen(str2) + 1);
-            strcpy (& packet -> data [strlen (str)], str2);
-
-            /* Send the packet to the peer over channel id 0. */
-            /* One could also broadcast the packet by         */
-            /* enet_host_broadcast (host, 0, packet);         */
-            enet_peer_send (peer, 0, packet);
-            /* One could just use enet_host_service() instead. */
-            enet_host_flush (client);
+//            char str2[24];
+//            memset(str2, 0, sizeof(str2));
+//            sprintf(str2, "foo%d", i);
+//            fprintf(stdout, "client do while loop i=%d len_str2=%d\n", i, strlen(str2));
+//            i++;
+//            /* Create a reliable packet of size 7 containing "packet\0" */
+//            char str[] = "packet_";
+//            ENetPacket * packet = enet_packet_create (str,
+//                                                      strlen (str) + 1,
+//                                                      ENET_PACKET_FLAG_RELIABLE);
+//            /* Extend the packet so and append the string "foo", so it now */
+//            /* contains "packetfoo\0"                                      */
+//            enet_packet_resize (packet, strlen (str) + strlen(str2) + 1);
+//            strcpy (& packet -> data [strlen (str)], str2);
+//
+//            /* Send the packet to the peer over channel id 0. */
+//            /* One could also broadcast the packet by         */
+//            /* enet_host_broadcast (host, 0, packet);         */
+//            enet_peer_send (peer, 0, packet);
+//            /* One could just use enet_host_service() instead. */
+//            enet_host_flush (client);
 
             while (enet_host_service(client, &event, 0) > 0) {
                 switch (event.type) {

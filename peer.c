@@ -574,9 +574,7 @@ enet_peer_disconnect (ENetPeer * peer, enet_uint32 data)
 int
 enet_peer_has_outgoing_commands (ENetPeer * peer)
 {
-  if (enet_list_empty (& peer -> outgoingCommands) &&
-      enet_list_empty (& peer -> outgoingSendReliableCommands) &&
-      enet_list_empty (& peer -> sentReliableCommands))
+  if (enet_list_empty (& peer -> outgoingCommands) && enet_list_empty (& peer -> outgoingSendReliableCommands) && enet_list_empty (& peer -> sentReliableCommands))
     return 0;
 
   return 1;
@@ -637,31 +635,25 @@ void
 enet_peer_setup_outgoing_command (ENetPeer * peer, ENetOutgoingCommand * outgoingCommand)
 {
     peer -> outgoingDataTotal += enet_protocol_command_size (outgoingCommand -> command.header.command) + outgoingCommand -> fragmentLength;
-
     if (outgoingCommand -> command.header.channelID == 0xFF)
     {
        ++ peer -> outgoingReliableSequenceNumber;
-
        outgoingCommand -> reliableSequenceNumber = peer -> outgoingReliableSequenceNumber;
        outgoingCommand -> unreliableSequenceNumber = 0;
     }
     else
     {
         ENetChannel * channel = & peer -> channels [outgoingCommand -> command.header.channelID];
-
         if (outgoingCommand -> command.header.command & ENET_PROTOCOL_COMMAND_FLAG_ACKNOWLEDGE)
         {
            ++ channel -> outgoingReliableSequenceNumber;
            channel -> outgoingUnreliableSequenceNumber = 0;
-
            outgoingCommand -> reliableSequenceNumber = channel -> outgoingReliableSequenceNumber;
            outgoingCommand -> unreliableSequenceNumber = 0;
         }
-        else
-        if (outgoingCommand -> command.header.command & ENET_PROTOCOL_COMMAND_FLAG_UNSEQUENCED)
+        else if (outgoingCommand -> command.header.command & ENET_PROTOCOL_COMMAND_FLAG_UNSEQUENCED)
         {
            ++ peer -> outgoingUnsequencedGroup;
-
            outgoingCommand -> reliableSequenceNumber = 0;
            outgoingCommand -> unreliableSequenceNumber = 0;
         }
@@ -669,7 +661,6 @@ enet_peer_setup_outgoing_command (ENetPeer * peer, ENetOutgoingCommand * outgoin
         {
            if (outgoingCommand -> fragmentOffset == 0)
              ++ channel -> outgoingUnreliableSequenceNumber;
-
            outgoingCommand -> reliableSequenceNumber = channel -> outgoingReliableSequenceNumber;
            outgoingCommand -> unreliableSequenceNumber = channel -> outgoingUnreliableSequenceNumber;
         }
@@ -695,8 +686,7 @@ enet_peer_setup_outgoing_command (ENetPeer * peer, ENetOutgoingCommand * outgoin
         break;
     }
 
-    if ((outgoingCommand -> command.header.command & ENET_PROTOCOL_COMMAND_FLAG_ACKNOWLEDGE) != 0 &&
-        outgoingCommand -> packet != NULL)
+    if ((outgoingCommand -> command.header.command & ENET_PROTOCOL_COMMAND_FLAG_ACKNOWLEDGE) != 0 && outgoingCommand -> packet != NULL)
       enet_list_insert (enet_list_end (& peer -> outgoingSendReliableCommands), outgoingCommand);
     else
       enet_list_insert (enet_list_end (& peer -> outgoingCommands), outgoingCommand);

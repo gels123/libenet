@@ -184,13 +184,10 @@ enet_host_connect (ENetHost * host, const ENetAddress * address, size_t channelC
 
     if (channelCount < ENET_PROTOCOL_MINIMUM_CHANNEL_COUNT)
       channelCount = ENET_PROTOCOL_MINIMUM_CHANNEL_COUNT;
-    else
-    if (channelCount > ENET_PROTOCOL_MAXIMUM_CHANNEL_COUNT)
+    else if (channelCount > ENET_PROTOCOL_MAXIMUM_CHANNEL_COUNT)
       channelCount = ENET_PROTOCOL_MAXIMUM_CHANNEL_COUNT;
 
-    for (currentPeer = host -> peers;
-         currentPeer < & host -> peers [host -> peerCount];
-         ++ currentPeer)
+    for (currentPeer = host -> peers; currentPeer < & host -> peers [host -> peerCount]; ++ currentPeer)
     {
        if (currentPeer -> state == ENET_PEER_STATE_DISCONNECTED)
          break;
