@@ -40,7 +40,7 @@ int main() {
     address.port = 1234;
 
     /* Initiate the connection, allocating the two channels 0 and 1. */
-    peer = enet_host_connect (client, & address, 2, 0);
+    peer = enet_host_connect (client, & address, 1, 0);
 
     if (peer == NULL)
     {
