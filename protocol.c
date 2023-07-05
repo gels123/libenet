@@ -1833,7 +1833,6 @@ enet_host_service (ENetHost * host, ENetEvent * event, enet_uint32 timeout)
 #ifdef ENET_DEBUG
           perror ("Error receiving incoming packets");
 #endif
-
           return -1;
 
        default:

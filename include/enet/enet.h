@@ -364,7 +364,7 @@ typedef int (ENET_CALLBACK * ENetInterceptCallback) (struct _ENetHost * host, st
   */
 typedef struct _ENetHost
 {
-   ENetSocket           socket;
+   ENetSocket           socket;                      /**< socket fd */
    ENetAddress          address;                     /**< Internet address of the host */
    enet_uint32          incomingBandwidth;           /**< downstream bandwidth of the host */
    enet_uint32          outgoingBandwidth;           /**< upstream bandwidth of the host */
