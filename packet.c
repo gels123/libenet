@@ -25,8 +25,7 @@ enet_packet_create (const void * data, size_t dataLength, enet_uint32 flags)
 
     if (flags & ENET_PACKET_FLAG_NO_ALLOCATE)
       packet -> data = (enet_uint8 *) data;
-    else
-    if (dataLength <= 0)
+    else if (dataLength <= 0)
       packet -> data = NULL;
     else
     {
